@@ -51,12 +51,12 @@ jobs:
           echo 'Branch is: $(build.sourceBranch)'
           docker_ctx=$(dirname $(dockerfilePath))
           docker build -t $(ecr.REPOSITORY_URI):$(imageTag) -f $(dockerfilePath) $docker_ctx
-        failOnStderr: true
+        failOnStderr: off
         displayName: 'Docker Build'
 
       - bash: |
           docker push $(ecr.REPOSITORY_URI):$(imageTag)
-        failOnStderr: true
+        failOnStderr: off
         displayName: 'Docker Push'
 
       - bash: |
@@ -64,7 +64,7 @@ jobs:
               --version $(helmChartVersion) \
               --app-version $(imageTag) \
               $(helmChartDirPath)
-        failOnStderr: true
+        failOnStderr: off
         displayName: 'Helm Package'
 
       - task: AWSShellScript@1
@@ -73,7 +73,7 @@ jobs:
         inputs:
             awsCredentials: ${{ parameters.serviceConnectionName }}
             regionName: ${{ parameters.awsRegion }}
-            failOnStandardError: true
+            failOnStandardError: off
             scriptType: 'inline'
             inlineScript: |
               chartPackage=$(ls ${{ parameters.projectName }}-$(helmChartVersion).tgz)
