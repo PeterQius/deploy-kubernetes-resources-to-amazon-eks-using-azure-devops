@@ -65,7 +65,7 @@ jobs:
               --version $(helmChartVersion) \
               --app-version $(imageTag) \
               $(helmChartDirPath)
-        failOnStderr: off
+        failOnStderr: on
         displayName: 'Helm Package'
 
       - task: AWSShellScript@1
