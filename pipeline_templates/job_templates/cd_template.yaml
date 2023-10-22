@@ -13,7 +13,7 @@ jobs:
         inputs:
             awsCredentials: ${{ parameters.serviceConnectionName }}
             regionName: ${{ parameters.awsRegion }}
-            failOnStandardError: off
+            failOnStandardError: true
             scriptType: 'inline'
             inlineScript: |
               echo 'Using identity'
