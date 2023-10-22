@@ -14,37 +14,37 @@ parameters:
 - name: awsEKSRegion
   displayName: EKS Cluster region
   type: string
-  default: ''
+  default: 'us-west-2'
 
 - name: awsECRRegion
   displayName: ECR region
   type: string
-  default: ''
+  default: 'us-west-2'
 
 - name: awsECRAccountId
   displayName: Account ID where ECR Registry is located
   type: string
-  default: ''
+  default: '955513527673'
 
 - name: projectName
   displayName: Name of the project, must be same as the Helm Chart name.
   type: string
-  default: 'default'
+  default: 'webapp'
 
 - name: imageTag
   displayName: Image Tag related to container image for application
   type: string
-  default: ''
+  default: 'webapp'
 
 - name: imageName
   displayName: Name of the container image
   type: string
-  default: ''
+  default: 'webapp'
 
 - name: K8sNamespace
   displayName: K8s Namespace for deployment
   type: string
-  default: ''
+  default: 'webapp'
 
 - name: helmVersion
   displayName: Version of Helm
@@ -59,12 +59,12 @@ parameters:
 - name: helmChartDirPath
   displayName: Path of the directory containing the chart to be packaged, eg webapp/charts/webapp
   type: string
-  default: ''
+  default: 'webapp/charts/webapp'
 
 - name: dockerfilePath
   displayName: Path of the Dockerfile, eg webapp/Dockerfile.
   type: string
-  default: ''
+  default: 'webapp/Dockerfile'
 
 stages:
 - stage: Init
