@@ -55,7 +55,6 @@ jobs:
         displayName: 'Docker Build'
 
       - bash: |
-          echo $stderr
           docker push $(ecr.REPOSITORY_URI):$(imageTag)
         failOnStderr: on
         displayName: 'Docker Push'
@@ -67,14 +66,15 @@ jobs:
               $(helmChartDirPath)
         failOnStderr: on
         displayName: 'Helm Package'
-
+        echo $stderr
+                  
       - task: AWSShellScript@1
         name: helmPush
         displayName: 'Helm Push'
         inputs:
             awsCredentials: ${{ parameters.serviceConnectionName }}
             regionName: ${{ parameters.awsRegion }}
-            failOnStandardError: off
+            failOnStandardError: on
             scriptType: 'inline'
             inlineScript: |
               chartPackage=$(ls ${{ parameters.projectName }}-$(helmChartVersion).tgz)
