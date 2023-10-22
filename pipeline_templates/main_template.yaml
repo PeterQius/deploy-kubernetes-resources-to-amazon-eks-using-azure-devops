@@ -34,17 +34,17 @@ parameters:
 - name: imageTag
   displayName: Image Tag related to container image for application
   type: string
-  default: 'webapp'
+  default: 'webapp-peter'
 
 - name: imageName
   displayName: Name of the container image
   type: string
-  default: 'webapp'
+  default: 'webapp-peter'
 
 - name: K8sNamespace
   displayName: K8s Namespace for deployment
   type: string
-  default: 'webapp'
+  default: 'webapp-peter'
 
 - name: helmVersion
   displayName: Version of Helm
