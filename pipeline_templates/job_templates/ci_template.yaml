@@ -51,16 +51,16 @@ jobs:
           echo 'Branch is: $(build.sourceBranch)'
           docker_ctx=$(dirname $(dockerfilePath))
           docker build -t $(ecr.REPOSITORY_URI):$(imageTag) -f $(dockerfilePath) $docker_ctx
-        failOnStderr: off
+        failOnStderr: on
         displayName: 'Docker Build'
 
       - bash: |
+          echo $stderr
           docker push $(ecr.REPOSITORY_URI):$(imageTag)
         failOnStderr: on
         displayName: 'Docker Push'
 
       - bash: |
-          echo $stderr
           helm package \
               --version $(helmChartVersion) \
               --app-version $(imageTag) \
