@@ -6,7 +6,7 @@ jobs:
       - task: HelmInstaller@1
         displayName: 'Install Helm'
         inputs:
-          helmVersionToInstall: ${{ parameters.helmVersion }}
+          helmVersionToInstall: 3.3.1
 
       - task: AWSShellScript@1
         displayName: 'ECR login'
