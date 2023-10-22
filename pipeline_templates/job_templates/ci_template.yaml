@@ -14,7 +14,7 @@ jobs:
         inputs:
             awsCredentials: ${{ parameters.serviceConnectionName }}
             regionName: ${{ parameters.awsRegion }}
-            failOnStandardError: off
+            failOnStandardError: on
             scriptType: 'inline'
             inlineScript: |
               echo 'Using identity'
@@ -47,6 +47,7 @@ jobs:
               --password-stdin $(awsECRAccountId).dkr.ecr.$(awsECRRegion).amazonaws.com
               
       - bash: |
+          echo $stderr
           echo 'Building and tagging Docker Image...'
           echo 'Branch is: $(build.sourceBranch)'
           docker_ctx=$(dirname $(dockerfilePath))
